@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="dashboard20">
+    <div class="logo">
+        <a href="#">
+            <img src="/static/images/dev/logo.jpg" alt="logo" height="150">
+        </a>
+    </div>
+    <div class="new_navi">
+        <ul>
+            <li class="active"><a href="{% url 'dashboard' %}"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;Home</span></a></li>
+            <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;Profile</span></a></li>
+            <li><a href="#"><i class="fa fa-book" aria-hidden="true"></i>&nbsp;My books</span></a></li>
+            <li><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;Events</span></a></li>
+            <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i>&nbsp;Settings</span></a></li>
+        </ul>
+    </div>
+    
+</div>
+<div class="dashboard80">
+    <main role="main">
+            <div class="sales report">
+            <h3>Your Books</h3>
+                <br>
+                <br>
+                {%if books %}
+                    <table class="table">
+                        <thead class="thead">
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Book Title</th>
+                            <th scope="col">Author</th>
+                            <th scope="col">Publisher</th>
+                            <th scope="col">Borrowed date</th>
+                            <th scope="col">Return date</th>
+                            <th scope="col">Return it</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for b in books %}
+                            <!-- <div>{{b.book.id}}hello</div> -->
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>{{b.book.book_name}}</td>
+                                <td>{{b.author.author_name}}</td>
+                                <td>{{b.book.publisher_id}}</td>
+                                <td>{{b.borrow_date}}</td>
+                                <td>{{b.return_date}}</td>
+                                <td>
+                                    <a href="{% url 'return_book' b.book.id %}" class="btn btn-warning">
+                                        Return
+                                    </a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <hr style="visibility: hidden">
+                    <hr style="visibility: hidden">
+                    <hr>
+                    <p class="alert-info">At the moment you don't have borrowed books</p>
+
+                {% endif %}
+            </div>
+        </div>
+    </main>
+
+</div>
+
+
+
+   
+
+{% endblock %}

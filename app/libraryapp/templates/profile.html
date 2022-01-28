@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="dashboard20">
+    <div class="logo">
+        <a href="#">
+            <img src="/static/images/dev/logo.jpg" alt="logo" height="150">
+        </a>
+    </div>
+    <div class="new_navi">
+        <ul>
+            <li><a href="{% url 'dashboard' %}"><i class="fa fa-home" aria-hidden="true"></i>&nbsp;Home</span></a></li>
+            <li><a href="{% url 'profile' %}"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;Profile</span></a></li>
+            <li><a href="{% url 'my_books' user.id %}"><i class="fa fa-book" aria-hidden="true"></i>&nbsp;My books</span></a></li>
+            <li><a href="#"><i class="fa fa-calendar" aria-hidden="true"></i>&nbsp;Events</span></a></li>
+            <li><a href="#"><i class="fa fa-cog" aria-hidden="true"></i>&nbsp;Settings</span></a></li>
+        </ul>
+    </div>
+    
+</div>
+<div class="dashboard80">
+    <div class="sales report">
+        <h2>Profile details</h2>
+        <hr style="visibility: hidden">
+        <hr style="visibility: hidden">
+        <hr>
+        <div class="row">
+                    <div class="col-sm-6 col-md-4">
+                        <img src="https://ui-avatars.com/api/?name={{user.name}}&size=380&font-size=0.3" alt="" class="img-rounded img-responsive" />
+                    </div>
+                    <div class="col-sm-6 col-md-8">
+                        <h4>{{user.name}}</h4>
+                        <small><cite title="San Francisco, USA">{{user.address}}<i class="glyphicon glyphicon-map-marker">
+                        </i></cite></small>
+                        <p>
+                            <i class="glyphicon glyphicon-envelope"></i>{{user.email}}
+                            <br />
+                            <i class="glyphicon glyphicon-globe"></i><a href="http://www.facebook.com/{{user.username}}">www.facebook.com/{{user.username}}</a>
+                            <br />
+                            <i class="glyphicon glyphicon-star"></i>{{user.points}} points</p>
+                    </div>
+                </div>
+    </div>
+</div>
+
+{% endblock %}

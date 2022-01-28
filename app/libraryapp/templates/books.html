@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block content %}
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+    </style>
+    <div class="container-quote">
+        <div class="quote-box">
+            <div class="quote">
+                <blockquote>
+                "The secret of getting ahead is getting started. The secret of getting started is breaking your complex overwhelming tasks into small manageable tasks, and starting on the first one."
+                </blockquote>
+            </div>
+            <div class="name">
+              Mark Twain
+            </div>
+        </div>
+
+    </div>
+    <br>
+
+    <div id="large-th">
+        <div class="container">
+            <h1>Books</h1>
+            <br>
+
+            <div id="list-th">
+            {% if page_obj %}
+                <div class="row">
+                {% for book in page_obj %}
+                    <div class="section">
+                        <div class="book read">
+                            <div class="cover">
+                                <img src="/static/images/books/{{book.book_name}}.jpg" alt="author.name">
+                            </div>
+                                
+                            <div class="description">
+                                <p class="title">{{ book.book_name }}</p>
+                                <div class="row" style="margin: 5px 0px 0px 5px; ">
+                                        
+                                        <a href="{% url 'author' book.author_id_id %}" class="author_link">{{book.author_id}}</a>
+                                    
+                                    
+                                        <a href="{% url 'borrow' book.id %}" data-tip="Borrow it" class="borrow_link">Borrow</a>
+
+                                </div>
+                            </div>
+                                
+                        </div>
+
+                    </div>
+                        
+                {% endfor %}
+
+                    <div class="pagination" style="margin: 0 auto;">
+                        <span class="step-links">
+                            {% if page_obj.has_previous %}
+                                <a class="btn btn-outline-info mb-4" href="?page=1">First</a>
+                                <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                            {% endif %}
+        
+                            {% for num in page_obj.paginator.page_range %}
+                                {% if page_obj.number == num %}
+                                    <a class="btn btn-info mb-4" href="?page={{ num }}">{{ num }}</a>
+                                {% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'3' %}
+                                    <a class="btn btn-outline-info mb-4" href="?page={{ num }}">{{ num }}</a>
+                                {% endif %}
+                            {% endfor %}
+        
+                            {% if page_obj.has_next %}
+                                <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.next_page_number }}">Next</a>
+                                <a class="btn btn-outline-info mb-4" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+                            {% endif %}
+                        </span>
+                    </div>
+
+
+
+
+
+                </div>
+            {% endif %}
+
+            
+
+        </div>
+        </div>
+    </div>
+
+{% endblock %}        

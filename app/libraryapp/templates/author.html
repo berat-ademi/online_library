@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% if author %}
+    <div class="container">
+
+        <div class="row">
+            <div class="col-sm-6 col-md-4">
+                <img src="/static/images/authors/{{author.author_name}}.jpg" alt="{{author.author_name}}" class="author image" />
+            </div>
+            <div class="container">
+                <h4>{{author.author_name}}</h4>
+                <h2 class="mt-2">Bio:</h2>
+                <p style="font-size:21px;">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugiat quasi, laudantium earum aliquid maiores expedita, quis iusto nihil voluptatibus omnis beatae dolore repudiandae voluptatum, rerum obcaecati tempora dolorum reprehenderit dicta.</p>
+            </div>
+        </div>
+        <h3 class="mt-4" style="text-align: center;">More books by {{author.author_name}}</h3>
+    </div>
+        <div id="large-th">
+
+            <div class="container">
+                
+                <div class="row">
+                    <div id="list-th">
+                        <div class="section">
+                            <div class="row">
+                            {% for b in books %}
+
+                                <div class="book read">
+                                    <div class="cover">
+                                        <img src="/static/images/books/{{b.book_name}}.jpg" alt="author.name">
+                                    </div>
+                                    
+                                    <div class="description">
+                                        <p class="title">{{ b.book_name }}</p>
+                                        
+                                        <a href="{% url 'author' b.author_id_id %}">{{b.author_id}}</a>
+                                    </div>
+                                    
+                                </div>
+                            {% endfor %}
+                            </div>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+{% endblock %}
