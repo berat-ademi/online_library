@@ -1,1 +1,1 @@
-web: gunicorn app/appo.wsgi
+web: gunicorn appo.wsgi
