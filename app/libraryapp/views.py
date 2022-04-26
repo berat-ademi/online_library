@@ -153,19 +153,11 @@ def dashboard(request):
             }
             messages.append(message)
 
-    # admin_messages = alert.objects.filter(user=user, is_read=False).all()
-    # events = Event.objects.filter(ended=False).all()
-    # my_events=[]
-    # for e in events:
-    #     if datetime.datetime.now().day - e.date.day >= 0:
-    #         e.ended = 1
-    #     else:
-    #         my_events.append(e)
+
     context = {
         'messages': messages,
         'user': user,
-        # 'admin_messages': admin_messages,
-        # 'events':my_events,
+
     }
     return render(request, 'dashboard.html', context=context)
 
